@@ -8,7 +8,7 @@
 // import $ from 'jquery';
 
 import * as jQuery from 'jquery';
-let $ = jQuery;
+
 // window.$ = jQuery;
 
 import 'select2/dist/js/select2.full';
@@ -87,6 +87,8 @@ export default {
     }
   },
   mounted() {
+    let $ = jQuery;
+
     this.select2 = $(this.$el)
       .find('select')
       .select2({
