@@ -5,7 +5,12 @@
 </template>
 
 <script>
-import $ from 'jquery';
+// import $ from 'jquery';
+
+import * as jQuery from 'jquery';
+let $ = jQuery;
+// window.$ = jQuery;
+
 import 'select2/dist/js/select2.full';
 import 'select2/dist/css/select2.min.css'
 
@@ -16,7 +21,7 @@ export default {
       select2: null
     };
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'opening'],
   props: {
     modelValue: [String, Array], // previously was `value: String`
     id: {
@@ -92,6 +97,9 @@ export default {
       .on('select2:select select2:unselect', ev => {
         this.$emit('update:modelValue', this.select2.val());
         this.$emit('select', ev['params']['data']);
+      })
+      .on('select2:opening', ev => {
+        this.$emit('opening', ev);
       });
     this.setValue(this.modelValue);
   },
