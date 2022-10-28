@@ -6,13 +6,19 @@
 
 <script>
 // import $ from 'jquery';
+// import {$,jQuery} from 'jquery';
+// import * as jQuery from 'jquery';
+// import * as $ from 'jquery'
+// import $ from './node_modules/jquery'
 
-import * as jQuery from 'jquery';
-
-// window.$ = jQuery;
+// import * as $ from 'jquery/dist/jquery.js'
+import 'jquery/dist/jquery.js'
+// import * as $ from 'jquery/dist/jquery'
 
 import 'select2/dist/js/select2.full';
 import 'select2/dist/css/select2.min.css'
+
+// const jQuery = require('jquery')(dom.window)
 
 export default {
   name: 'Select2',
