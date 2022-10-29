@@ -31,7 +31,7 @@
     "build": "nuxt3-cli-service build",
     "lint": "nuxt3-cli-service lint"
   },
-  "homepage": "https://github.com/jackysupit/nuxt3-select2.git#readme",
+  "homepage": "https://github.com/jackysupit/nuxt3-select2/tree/for-nuxt3#readme",
   "dependencies": {
     "jquery": "^3.3.1",
     "select2": "^4.0.7-rc.0"
