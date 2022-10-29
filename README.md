@@ -1,66 +1,49 @@
-# vue3-select2-component
+#nuxt3-select2
 
-Source code in: [https://github.com/godbasin/vue-select2/tree/npm-publish-code-for-vue3](https://github.com/godbasin/vue-select2/tree/npm-publish-code-for-vue3).
+this is a [select2](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) component for [nuxt3](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) based on godbasin work here: [vue3-select2-component](https://github.com/jackysupit/nuxt3-select2.git.git)  credits belong to him". And of course for them, the good people who make select2 and nuxt3 availble for us.
 
-Demo code in: [https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component).
 
-## Related Versions
-
-vue3-select2-component is baseed on these plugins and libs(version):
-- [vue(>= 3.0-beta)](https://github.com/vuejs/vue-next)
-- [jQuery](https://jquery.com/)
-- [select2](https://select2.github.io/)
-
-## How to use 
+## How to use
 ---
 ### Install
 ``` cmd
 // npm install
-npm install vue3-select2-component --save
+npm install nuxt3-select2 --save
 ```
 
 ### Use as component
-1. import as global component.
+1. make a plugin
 ``` javascript
-// import Select2Component
-import Select2 from 'vue3-select2-component';
-// Create a Vue application
-const app = Vue.createApp({})
+// plugins/select2.client.ts
+import Select2 from 'nuxt3-select2';
 
-// Define a new global component called button-counter
-app.component('Select2', Select2)
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.component("Select2", Select2, {});
+});
 ```
 
-2. import into a single component.
+2. now it's available on your template
 ``` javascript
-// import Select2Component
-import Select2 from 'vue3-select2-component';
-
+// use it
 <template>
   <div>
     <Select2 v-model="myValue" :options="myOptions" :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="mySelectEvent($event)" />
     <h4>Value: {{ myValue }}</h4>
   </div>
 </template>
-<script>
-export default {
-    // declare Select2Component
-    components: {Select2},
-    data() {
-        return {
-            myValue: '',
-            myOptions: ['op1', 'op2', 'op3'] // or [{id: key, text: value}, {id: key, text: value}]
-        }
-    },
-    methods: {
-        myChangeEvent(val){
-            console.log(val);
-        },
-        mySelectEvent({id, text}){
-            console.log({id, text})
-        }
-    }
-}
+<script setup lang="ts">
+  const myChangeEvent = (event) => {
+    console.log("myChangeEvent: ", event);
+  }
+  const mySelectEvent = (e) => {
+    console.log("mySelectEvent: ", event);
+  }
+  const myOptions = [
+    {id: 1, text: 'apple'},
+    {id: 2, text: 'berry'},
+    {id: 3, text: 'cherry'},
+  ]
+  const myValue = ref();
 </script>
 ```
 
@@ -71,13 +54,6 @@ export default {
 - `v-model`: option value that is selected
   - `id` or `string` while multiple is disable
   - `id[]` or `string[]` while multiple is enable
-- `update:modelValue`
-  - callback when option selected change
-  - return value
-  - parmas: same with `v-model`
-- `select`
-  - callback when option selected
-  - parmas: `option`(`{id: value, text: key, selected: ifSelected}` or `string`)
 - `disabled`
   - if select is disabled
 - `placeholder`
@@ -89,3 +65,18 @@ export default {
 - `settings`
   - configurable settings, see [Select2 options API](https://select2.org/configuration/options-api)
   - `setting`: `{ settingOption: value, settingOption: value }`
+
+### Supported Events
+currently supporting these events:
+- `change` := change',
+- `closing` := select2:closing
+- `close` := select2:close
+- `opening` := select2:opening
+- `open` := select2:open
+- `selecting` := select2:selecting
+- `select` := select2:select
+- `unselecting` := select2:unselecting
+- `unselect` := select2:unselect
+- `clearing` := select2:clearing
+- `clear` := select2:clear
+for the complete documentation, see on [Select2 Event API](https://select2.org/programmatic-control/events)

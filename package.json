@@ -1,10 +1,10 @@
 {
-  "name": "vue3-select2-component",
-  "version": "0.1.7",
-  "description": "select2 component in vue3.",
+  "name": "nuxt3-select2",
+  "version": "0.1.1",
+  "description": "select2 for nuxt3. this is based on godbasin work here: https://github.com/jackysupit/nuxt3-select2.git.git  credits belong to him",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/godbasin/vue-select2.git"
+    "url": "git+https://github.com/jackysupit/nuxt3-select2.git"
   },
   "keywords": [
     "vue",
@@ -12,10 +12,10 @@
     "nuxt3",
     "select2"
   ],
-  "author": "godbasin <wangbeishan@163.com> (https://github.com/godbasin)",
+  "author": "jacky supit",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/godbasin/vue-select2/issues"
+    "url": "https://github.com/jackysupit/nuxt3-select2.git/issues"
   },
   "main": "src/Select2.vue",
   "browser": {
@@ -26,12 +26,12 @@
     "src/**/*.vue"
   ],
   "scripts": {
-    "build:publish": "vue-cli-service build --target lib --name Select2 src/Select2.vue",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build:publish": "nuxt3-cli-service build --target lib --name Select2 src/Select2.vue",
+    "serve": "nuxt3-cli-service serve",
+    "build": "nuxt3-cli-service build",
+    "lint": "nuxt3-cli-service lint"
   },
-  "homepage": "https://github.com/godbasin/vue-select2#readme",
+  "homepage": "https://github.com/jackysupit/nuxt3-select2.git#readme",
   "dependencies": {
     "jquery": "^3.3.1",
     "select2": "^4.0.7-rc.0"
