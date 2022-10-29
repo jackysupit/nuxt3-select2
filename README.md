@@ -91,17 +91,16 @@ Here is how I manage it works:
 ```html
   <div class="input-group">
     <Datepicker class="my-control" />
-    <Select2 class="my-control"
-    />
+    <Select2 class="my-control"/>
   </div>
 ```
 
-Putting form-control class is ok, but it will create borders, while I don't want to have that border. So I create my own class: my-control. It's optional of course.
+Putting form-control class is ok, but it will create borders, while I don't want to have that border. So I create my own class: my-control. Igt's optional of course.
 
 here is the css:
 ``` css
   .input-group .select2-container {
-    height: 37px;;
+    height: 37px;
   }
 
   .input-group .select2-container .selection .select2-selection--single {
