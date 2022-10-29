@@ -95,7 +95,7 @@ Here is how I manage it works:
   </div>
 ```
 
-Putting form-control class is ok, but it will create borders, while I don't want to have that border. So I create my own class: my-control. Igt's optional of course.
+Putting form-control class is ok, but it will create borders, while I don't want to have that border. So I create my own class: my-control. It's optional of course.
 
 here is the css:
 ``` css
