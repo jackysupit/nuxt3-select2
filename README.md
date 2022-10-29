@@ -1,6 +1,6 @@
 #nuxt3-select2
 
-this is a [select2](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) component for [nuxt3](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) based on godbasin work here: [vue3-select2-component](https://github.com/jackysupit/nuxt3-select2.git.git)  credits belong to him". And of course for them, the good people who make select2 and nuxt3 availble for us.
+this is a [select2](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) component for [nuxt3](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) based on godbasin work here: [vue3-select2-component](https://github.com/jackysupit/nuxt3-select2.git.git)  credits belong to them for making all these availble for us for free.
 
 
 ## How to use
@@ -68,7 +68,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ### Supported Events
 currently supporting these events:
-- `change` := change',
+- `change` := change
 - `closing` := select2:closing
 - `close` := select2:close
 - `opening` := select2:opening
@@ -79,4 +79,6 @@ currently supporting these events:
 - `unselect` := select2:unselect
 - `clearing` := select2:clearing
 - `clear` := select2:clear
-for the complete documentation, see on [Select2 Event API](https://select2.org/programmatic-control/events)
+
+
+For the complete documentation, see on [Select2 Event API](https://select2.org/programmatic-control/events)
