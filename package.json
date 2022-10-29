@@ -1,7 +1,7 @@
 {
   "name": "nuxt3-select2",
   "version": "0.1.1",
-  "description": "select2 for nuxt3. this is based on godbasin work here: https://github.com/jackysupit/nuxt3-select2.git.git  credits belong to him",
+  "description": "select2 for nuxt3. https://github.com/jackysupit/nuxt3-select2/tree/for-nuxt3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jackysupit/nuxt3-select2.git"
@@ -15,7 +15,7 @@
   "author": "jacky supit",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jackysupit/nuxt3-select2.git/issues"
+    "url": "https://github.com/jackysupit/nuxt3-select2/tree/for-nuxt3/issues"
   },
   "main": "src/Select2.vue",
   "browser": {
