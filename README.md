@@ -1,6 +1,4 @@
-#nuxt3-select2
-
-this is a [select2](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) component for [nuxt3](https://github.com/godbasin/vue-select2/tree/demo-for-vue3-select-component) based on godbasin work here: [vue3-select2-component](https://github.com/jackysupit/nuxt3-select2.git.git)  credits belong to them for making all these availble for us for free.
+This is a [select2](https://select2.org/) component for [nuxt3](https://v3.nuxtjs.org/) based on godbasin work here: [vue3-select2-component](https://github.com/godbasin/vue-select2/tree/npm-publish-code-for-vue3)  credits belong to them for making all these availble for us for free.
 
 
 ## How to use
@@ -82,3 +80,39 @@ currently supporting these events:
 
 
 For the complete documentation, see on [Select2 Event API](https://select2.org/programmatic-control/events)
+
+
+
+### Misc
+Somehow this select2 doesn't work well with bootstrap input-group. Has googled it and found many people facing the same problem.
+
+Here is how I manage it works:
+
+```html
+  <div class="input-group">
+    <Datepicker class="my-control" />
+    <Select2 class="my-control"
+    />
+  </div>
+```
+
+Putting form-control class is ok, but it will create borders, while I don't want to have that border. So I create my own class: my-control. It's optional of course.
+
+here is the css:
+``` css
+  .input-group .select2-container {
+    height: 37px;;
+  }
+
+  .input-group .select2-container .selection .select2-selection--single {
+      height: 100%;
+  }
+
+  /* optional, you can use form-control if you prefer */
+  .input-group .my-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+  }
+```
