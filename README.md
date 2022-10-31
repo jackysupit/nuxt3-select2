@@ -84,6 +84,8 @@ For the complete documentation, see on [Select2 Event API](https://select2.org/p
 
 
 ### Misc
+
+- problem with select2 inside input-group class
 Somehow this select2 doesn't work well with bootstrap input-group. Has googled it and found many people facing the same problem.
 
 Here is how I manage it works:
@@ -115,3 +117,18 @@ here is the css:
     min-width: 0;
   }
 ```
+
+- problem with select2 inside modal class
+this is also a weird behaviour.
+
+there are 30 solutions (wow :) here: [https://stackoverflow.com/questions/18487056/select2-doesnt-work-when-embedded-in-a-bootstrap-modal](https://stackoverflow.com/questions/18487056/select2-doesnt-work-when-embedded-in-a-bootstrap-modal)
+
+but sadly few top answers just doesn't work for me. Instead, I did a little trick, and it worked.
+just override the z-index
+```css
+.select2-container.select2-container--default.select2-container--open {
+  z-index: 9999;
+}
+```
+
+you don't have to make it 9999. at least the modal z-index + 1 is enough.
