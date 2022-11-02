@@ -108,7 +108,11 @@ export default {
   },
   methods: {
     setOption(val = []) {
-      this.select2.empty();
+      if(!this.select2) {
+        this.select2 = $(this.$el).find("select");
+      }
+
+      // this.select2.empty();
       this.select2.select2({
         placeholder: this.placeholder,
         ...this.settings,
@@ -117,6 +121,9 @@ export default {
       this.setValue(this.modelValue);
     },
     setValue(val) {
+      if(!this.select2) {
+        this.select2 = $(this.$el).find("select");
+      }
       if (val instanceof Array) {
         this.select2.val([...val]);
       } else {
@@ -150,7 +157,7 @@ export default {
       .on('select2:unselect', ev => {that.$emit('unselect', ev);})
       .on('select2:clearing', ev => {that.$emit('clearing', ev);})
       .on('select2:clear', ev => {that.$emit('clear', ev);});
-      
+
       if(typeof that.select2.setValue === 'function') {
         that.select2.setValue(that.modelValue);
       } else {
@@ -165,7 +172,7 @@ export default {
       if(typeof $(that.$el).find('select').select2 === 'undefined') {
         setTimeout(() => {
           waitUntilSelect2Loaded(that);
-        }, 500);
+        }, 1000);
       } else {
         okGo(that);
       }
@@ -174,7 +181,12 @@ export default {
     waitUntilSelect2Loaded(this);
   },
   beforeUnmount() {
-    this.select2.select2('destroy');
+    // if(!this.select2) {
+    //     this.select2 = $(this.$el).find("select");
+    // }
+    if($(this.$el).find("select").hasClass("select2-hidden-accessible")) {
+      this.select2.select2('destroy');
+    }
   }
 };
 </script>

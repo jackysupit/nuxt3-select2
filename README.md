@@ -134,8 +134,13 @@ just override the z-index
 you don't have to make it 9999. at least the modal z-index + 1 is enough.
 
 
-- somehow after npm run build, the jquery and select2 doesn't work
-i solve it by adding this in the nuxt-config.ts
+-  somehow after npm run build, the jquery and select2 doesn't work
+
+    (warning: it's not recommended to add jquery to vuejs application. so take it at your own risk
+    basically, all you need to do in jquery, you should be able to do it in vue. all you need to do is a little more  googling and stackoverflowing :''
+    )
+
+add this in the nuxt-config.ts
 
 ```ts
   app: {
