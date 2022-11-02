@@ -130,7 +130,7 @@ export default {
     let elSelect = $(this.$el).find('select');
 
     function okGo(that) {
-      that.select2 = elSelect.select2({
+      that.select2 = $(that.$el).find('select').select2({
         placeholder: that.placeholder,
         ...that.settings,
         data: that.options
@@ -149,8 +149,10 @@ export default {
       .on('select2:unselecting', ev => {that.$emit('unselecting', ev);})
       .on('select2:unselect', ev => {that.$emit('unselect', ev);})
       .on('select2:clearing', ev => {that.$emit('clearing', ev);})
-      .on('select2:clear', ev => {that.$emit('clear', ev);})
-      .setValue(that.modelValue);
+      .on('select2:clear', ev => {that.$emit('clear', ev);});
+
+      that.setValue(that.modelValue);
+      // .select2.setValue(that.modelValue);
     }
 
     //somehow in nuxt, it is not a very friendly neighborhood

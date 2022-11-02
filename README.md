@@ -132,3 +132,20 @@ just override the z-index
 ```
 
 you don't have to make it 9999. at least the modal z-index + 1 is enough.
+
+
+- somehow after npm run build, the jquery and select2 doesn't work
+i solve it by adding this in the nuxt-config.ts
+
+```ts
+  app: {
+    head: {
+      script: [
+        {src: '/_nuxt/node_modules/jquery/dist/jquery.js'},
+        {src: '/_nuxt/node_modules/select2/dist/js/select2.min.js'},
+      ],
+    },
+  css: [
+    "/_nuxt/node_modules/select2/dist/css/select2.min.css",
+  ],
+```
