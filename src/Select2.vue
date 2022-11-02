@@ -127,30 +127,44 @@ export default {
   },
   mounted() {
     let $ = jQuery;
+    let elSelect = $(this.$el).find('select');
 
-    this.select2 = $(this.$el)
-      .find('select')
-      .select2({
-        placeholder: this.placeholder,
-        ...this.settings,
-        data: this.options
+    function okGo(that) {
+      that.select2 = elSelect.select2({
+        placeholder: that.placeholder,
+        ...that.settings,
+        data: that.options
       })
       .on('select2:select select2:unselect', ev => {
-        this.$emit('update:modelValue', this.select2.val());
-        this.$emit('select', ev['params']['data']);
+        that.$emit('update:modelValue', that.select2.val());
+        that.$emit('select', ev['params']['data']);
       })
-      .on('change', ev => {this.$emit('change', ev);})
-      .on('select2:closing', ev => {this.$emit('closing', ev);})
-      .on('select2:close', ev => {this.$emit('close', ev);})
-      .on('select2:opening', ev => {this.$emit('opening', ev);})
-      .on('select2:open', ev => {this.$emit('open', ev);})
-      .on('select2:selecting', ev => {this.$emit('selecting', ev);})
-      .on('select2:select', ev => {this.$emit('select', ev);})
-      .on('select2:unselecting', ev => {this.$emit('unselecting', ev);})
-      .on('select2:unselect', ev => {this.$emit('unselect', ev);})
-      .on('select2:clearing', ev => {this.$emit('clearing', ev);})
-      .on('select2:clear', ev => {this.$emit('clear', ev);})
-    this.setValue(this.modelValue);
+      .on('change', ev => {that.$emit('change', ev);})
+      .on('select2:closing', ev => {that.$emit('closing', ev);})
+      .on('select2:close', ev => {that.$emit('close', ev);})
+      .on('select2:opening', ev => {that.$emit('opening', ev);})
+      .on('select2:open', ev => {that.$emit('open', ev);})
+      .on('select2:selecting', ev => {that.$emit('selecting', ev);})
+      .on('select2:select', ev => {that.$emit('select', ev);})
+      .on('select2:unselecting', ev => {that.$emit('unselecting', ev);})
+      .on('select2:unselect', ev => {that.$emit('unselect', ev);})
+      .on('select2:clearing', ev => {that.$emit('clearing', ev);})
+      .on('select2:clear', ev => {that.$emit('clear', ev);})
+      .setValue(that.modelValue);
+    }
+
+    //somehow in nuxt, it is not a very friendly neighborhood
+    function waitUntilSelect2Loaded(that) {
+      if(typeof elSelect.select2 === 'undefined') {
+        setTimeout(() => {
+          waitUntilSelect2Loaded(that);
+        }, 500);
+      } else {
+        okGo(that);
+      }
+    }
+
+    waitUntilSelect2Loaded(this);
   },
   beforeUnmount() {
     this.select2.select2('destroy');
