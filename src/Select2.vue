@@ -3,7 +3,10 @@
     <select class="form-control" :id="id" :name="name" :disabled="disabled" :required="required"></select>
   </div>
 </template>
-
+<style>
+  /* @import 'select2/dist/css/select2.min.css'; */
+  @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
+</style>
 <script>
 /**
  * this is the reason I make this for-nuxt3 version
@@ -18,9 +21,11 @@
 // import $ from './node_modules/jquery'
 // import * as $ from 'jquery/dist/jquery.js'
 // import * as $ from 'jquery/dist/jquery'
-import 'jquery/dist/jquery.js';
-import 'select2/dist/js/select2.full';
-import 'select2/dist/css/select2.min.css';
+
+/* import 'jquery/dist/jquery.js'; */
+/* import 'select2/dist/js/select2.full'; */
+import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
+import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
 
 // const jQuery = require('jquery')(dom.window)
 
@@ -42,9 +47,32 @@ clear
  */
 export default {
   name: 'Select2',
+  // head: {
+  //   script: [
+  //     // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'},
+  //     // { src: 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', mode: "client"},
+  //     // { src: 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.js'},
+  //     {
+  //         hid: 'stripe',
+  //         src: '<https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js/>',
+  //         defer: true,
+  //         // Changed after script load
+  //         callback: () => { this.isStripeLoadedJquery = true }
+  //     },
+  //     {
+  //         hid: 'stripe',
+  //         src: '<https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.js/>',
+  //         defer: true,
+  //         // Changed after script load
+  //         callback: () => { this.isStripeLoadedSelect2 = true }
+  //     },
+  //   ]
+  // },
   data() {
     return {
-      select2: null
+      select2: null,
+      isStripeLoadedJquery: false,
+      isStripeLoadedSelect2: false,
     };
   },
   emits: [
@@ -108,8 +136,9 @@ export default {
   },
   methods: {
     setOption(val = []) {
+      const elSelect = $($(this.$el).find('select')[0]);
       if(!this.select2) {
-        this.select2 = $(this.$el).find("select");
+        this.select2 = elSelect;
       }
 
       // this.select2.empty();
@@ -121,8 +150,9 @@ export default {
       this.setValue(this.modelValue);
     },
     setValue(val) {
+      const elSelect = $($(this.$el).find('select')[0]);
       if(!this.select2) {
-        this.select2 = $(this.$el).find("select");
+        this.select2 = elSelect;
       }
       if (val instanceof Array) {
         this.select2.val([...val]);
@@ -136,7 +166,9 @@ export default {
     let $ = jQuery;
 
     function okGo(that) {
-      that.select2 = $(that.$el).find("select");
+      const elSelect = $($(that.$el).find('select')[0]);
+
+      that.select2 = elSelect;
       that.select2.select2({
         placeholder: that.placeholder,
         ...that.settings,
@@ -169,7 +201,8 @@ export default {
 
     //somehow in nuxt, it is not a very friendly neighborhood
     function waitUntilSelect2Loaded(that) {
-      if(typeof $(that.$el).find('select').select2 === 'undefined') {
+      const elSelect = $($(that.$el).find('select')[0]);
+      if(typeof elSelect.select2 === 'undefined') {
         setTimeout(() => {
           waitUntilSelect2Loaded(that);
         }, 1000);
@@ -177,14 +210,29 @@ export default {
         okGo(that);
       }
     }
+    // waitUntilSelect2Loaded(this);
+    // okGo(this);
 
-    waitUntilSelect2Loaded(this);
+    let xx = 0;
+    function reMountedIfNotYet(that) {
+      xx++;
+      console.log("exec reMountedIfNotYet " + xx + ': ', xx)
+      setTimeout(() => {
+        const elSelect = $($(that.$el).find('select')[0]);
+        that.select2 = elSelect;
+        if(!elSelect.hasClass("select2-hidden-accessible")) {
+          waitUntilSelect2Loaded(that);
+
+          reMountedIfNotYet(that);
+        }
+      }, 1000);
+    }
+    reMountedIfNotYet(this);
   },
   beforeUnmount() {
-    // if(!this.select2) {
-    //     this.select2 = $(this.$el).find("select");
-    // }
-    if($(this.$el).find("select").hasClass("select2-hidden-accessible")) {
+    const elSelect = $($(this.$el).find('select')[0]);
+    this.select2 = elSelect;
+    if(elSelect.hasClass("select2-hidden-accessible")) {
       this.select2.select2('destroy');
     }
   }
