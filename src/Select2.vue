@@ -170,7 +170,7 @@ export default {
   },
   mounted() {
     const self = this;
-    console.log("starting the select2 - mounted");
+    // console.log("starting the select2 - mounted");
     let xJquery = 0;
     function waitJquery(that) {
       if(typeof window.jQuery === "undefined") {
@@ -182,7 +182,7 @@ export default {
         //   document.head.appendChild(jqueryScript);
         // }
 
-        console.log("starting the select2 - waiting xJquery: ", xJquery);
+        // console.log("starting the select2 - waiting xJquery: ", xJquery);
 
         setTimeout(() => {
           waitJquery(that);
@@ -267,7 +267,7 @@ export default {
 
 
 
-          console.log("exec reMountedIfNotYet " + xx + ': ', xx)
+          // console.log("exec reMountedIfNotYet " + xx + ': ', xx)
           setTimeout(() => {
             if(!that.select2) {
             let elSelect;
@@ -306,6 +306,6 @@ export default {
   </div>
 </template>
 <style>
-  @import 'select2/dist/css/select2.min.css';
-  /* @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'; */
+  /* @import 'select2/dist/css/select2.min.css'; */
+  @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
 </style>
