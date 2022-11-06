@@ -7,7 +7,7 @@
  */
 // import $ from 'jquery';
 // import {$,jQuery} from 'jquery';
-// import * as jQuery from 'jquery';
+// import * as jQuery from 'jquery';g
 // import * as $ from 'jquery'
 // import $ from './node_modules/jquery'
 // import * as $ from 'jquery/dist/jquery.js'
@@ -16,7 +16,6 @@
 /* import 'jquery/dist/jquery.js'; */
 /* import 'select2/dist/js/select2.full'; */
 
-g
 // import 'jquery/dist/jquery.js'
 // import 'select2/dist/js/select2.full.js';
 // console.log("starting the select2");
