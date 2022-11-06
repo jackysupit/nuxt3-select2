@@ -1,12 +1,3 @@
-<template>
-  <div>
-    <select class="form-control" :id="id" :name="name" :disabled="disabled" :required="required"></select>
-  </div>
-</template>
-<style>
-  /* @import 'select2/dist/css/select2.min.css'; */
-  @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
-</style>
 <script>
 /**
  * this is the reason I make this for-nuxt3 version
@@ -24,8 +15,13 @@
 
 /* import 'jquery/dist/jquery.js'; */
 /* import 'select2/dist/js/select2.full'; */
-import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
-import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
+
+
+import 'jquery/dist/jquery.js'
+import 'select2/dist/js/select2.full.js';
+console.log("starting the select2");
+// import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
+// import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
 
 // const jQuery = require('jquery')(dom.window)
 
@@ -136,8 +132,13 @@ export default {
   },
   methods: {
     setOption(val = []) {
-      const elSelect = $($(this.$el).find('select')[0]);
       if(!this.select2) {
+        let elSelect;
+        if(that.$el) {
+          elSelect = $(that.$el).find("select.this-is-select2");
+        } else {
+          elSelect = $(that).find("select.this-is-select2");
+        }
         this.select2 = elSelect;
       }
 
@@ -150,8 +151,13 @@ export default {
       this.setValue(this.modelValue);
     },
     setValue(val) {
-      const elSelect = $($(this.$el).find('select')[0]);
       if(!this.select2) {
+        let elSelect;
+        if(that.$el) {
+          elSelect = $(that.$el).find("select.this-is-select2");
+        } else {
+          elSelect = $(that).find("select.this-is-select2");
+        }
         this.select2 = elSelect;
       }
       if (val instanceof Array) {
@@ -163,78 +169,127 @@ export default {
     }
   },
   mounted() {
-    let $ = jQuery;
+    const self = this;
+    console.log("starting the select2 - mounted");
+    let xJquery = 0;
+    function waitJquery(that) {
+      if(typeof window.jQuery === "undefined") {
+        xJquery++;
 
-    function okGo(that) {
-      const elSelect = $($(that.$el).find('select')[0]);
+        console.log("starting the select2 - waiting xJquery: ", xJquery);
 
-      that.select2 = elSelect;
-      that.select2.select2({
-        placeholder: that.placeholder,
-        ...that.settings,
-        data: that.options
-      })
-      .on('select2:select select2:unselect', ev => {
-        that.$emit('update:modelValue', that.select2.val());
-        that.$emit('select', ev['params']['data']);
-      })
-      .on('change', ev => {that.$emit('change', ev);})
-      .on('select2:closing', ev => {that.$emit('closing', ev);})
-      .on('select2:close', ev => {that.$emit('close', ev);})
-      .on('select2:opening', ev => {that.$emit('opening', ev);})
-      .on('select2:open', ev => {that.$emit('open', ev);})
-      .on('select2:selecting', ev => {that.$emit('selecting', ev);})
-      .on('select2:select', ev => {that.$emit('select', ev);})
-      .on('select2:unselecting', ev => {that.$emit('unselecting', ev);})
-      .on('select2:unselect', ev => {that.$emit('unselect', ev);})
-      .on('select2:clearing', ev => {that.$emit('clearing', ev);})
-      .on('select2:clear', ev => {that.$emit('clear', ev);});
-
-      if(typeof that.select2.setValue === 'function') {
-        that.select2.setValue(that.modelValue);
-      } else {
-        if(typeof that.setValue === 'function') {
-          that.setValue(that.modelValue);
-        }
-      }
-    }
-
-    //somehow in nuxt, it is not a very friendly neighborhood
-    function waitUntilSelect2Loaded(that) {
-      const elSelect = $($(that.$el).find('select')[0]);
-      if(typeof elSelect.select2 === 'undefined') {
         setTimeout(() => {
-          waitUntilSelect2Loaded(that);
+          waitJquery(that);
         }, 1000);
       } else {
-        okGo(that);
+        let $ = window.jQuery;
+        window.$ = $;
+
+        function okGo(that) {
+          if(!that.select2) {
+            let elSelect;
+            if(that.$el) {
+              elSelect = $(that.$el).find("select.this-is-select2");
+            } else {
+              elSelect = $(that).find("select.this-is-select2");
+            }
+            that.select2 = elSelect;
+          }
+
+          that.select2.select2({
+            placeholder: that.placeholder,
+            ...that.settings,
+            data: that.options
+          })
+          .on('select2:select select2:unselect', ev => {
+            that.$emit('update:modelValue', that.select2.val());
+            that.$emit('select', ev['params']['data']);
+          })
+          .on('change', ev => {that.$emit('change', ev);})
+          .on('select2:closing', ev => {that.$emit('closing', ev);})
+          .on('select2:close', ev => {that.$emit('close', ev);})
+          .on('select2:opening', ev => {that.$emit('opening', ev);})
+          .on('select2:open', ev => {that.$emit('open', ev);})
+          .on('select2:selecting', ev => {that.$emit('selecting', ev);})
+          .on('select2:select', ev => {that.$emit('select', ev);})
+          .on('select2:unselecting', ev => {that.$emit('unselecting', ev);})
+          .on('select2:unselect', ev => {that.$emit('unselect', ev);})
+          .on('select2:clearing', ev => {that.$emit('clearing', ev);})
+          .on('select2:clear', ev => {that.$emit('clear', ev);});
+
+          if(typeof that.select2.setValue === 'function') {
+            that.select2.setValue(that.modelValue);
+          } else {
+            if(typeof that.setValue === 'function') {
+              that.setValue(that.modelValue);
+            }
+          }
+        }
+
+        //somehow in nuxt, it is not a very friendly neighborhood
+        function waitUntilSelect2Loaded(that) {
+          if(!that.select2) {
+            let elSelect;
+            if(that.$el) {
+              elSelect = $(that.$el).find("select.this-is-select2");
+            } else {
+              elSelect = $(that).find("select.this-is-select2");
+            }
+            that.select2 = elSelect;
+          }
+          if(typeof that.select2.select2 === 'undefined') {
+            setTimeout(() => {
+              waitUntilSelect2Loaded(that);
+            }, 1000);
+          } else {
+            okGo(that);
+          }
+        }
+        // waitUntilSelect2Loaded(this);
+        // okGo(this);
+
+        let xx = 0;
+        function reMountedIfNotYet(that) {
+          xx++;
+          console.log("exec reMountedIfNotYet " + xx + ': ', xx)
+          setTimeout(() => {
+            if(!that.select2) {
+            let elSelect;
+            if(that.$el) {
+              elSelect = $(that.$el).find("select.this-is-select2");
+            } else {
+              elSelect = $(that).find("select.this-is-select2");
+            }
+            that.select2 = elSelect;
+            }
+            if(!that.select2.hasClass("select2-hidden-accessible")) {
+              waitUntilSelect2Loaded(that);
+              reMountedIfNotYet(that);
+            }
+          }, 1000);
+        }
+
+        reMountedIfNotYet(self);
       }
     }
-    // waitUntilSelect2Loaded(this);
-    // okGo(this);
 
-    let xx = 0;
-    function reMountedIfNotYet(that) {
-      xx++;
-      console.log("exec reMountedIfNotYet " + xx + ': ', xx)
-      setTimeout(() => {
-        const elSelect = $($(that.$el).find('select')[0]);
-        that.select2 = elSelect;
-        if(!elSelect.hasClass("select2-hidden-accessible")) {
-          waitUntilSelect2Loaded(that);
-
-          reMountedIfNotYet(that);
-        }
-      }, 1000);
-    }
-    reMountedIfNotYet(this);
+    waitJquery(self);
   },
   beforeUnmount() {
-    const elSelect = $($(this.$el).find('select')[0]);
-    this.select2 = elSelect;
-    if(elSelect.hasClass("select2-hidden-accessible")) {
-      this.select2.select2('destroy');
+    if(this.select2) {
+      if(this.select2.hasClass("select2-hidden-accessible")) {
+        this.select2.select2('destroy');
+      }
     }
   }
 };
 </script>
+<template>
+  <div>
+    <select class="form-control this-is-select2" :placeholder="placeholder" :id="id" :name="name" :disabled="disabled" :required="required"></select>
+  </div>
+</template>
+<style>
+  @import 'select2/dist/css/select2.min.css';
+  /* @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'; */
+</style>
