@@ -176,6 +176,12 @@ export default {
       if(typeof window.jQuery === "undefined") {
         xJquery++;
 
+        if(xJquery == 3) {
+          let jqueryScript = document.createElement('script');
+          jqueryScript.setAttribute('src','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js');
+          document.head.appendChild(my_awesome_script);
+        }
+
         console.log("starting the select2 - waiting xJquery: ", xJquery);
 
         setTimeout(() => {
@@ -251,6 +257,16 @@ export default {
         let xx = 0;
         function reMountedIfNotYet(that) {
           xx++;
+
+          if(xx == 3) {
+            let select2Script = document.createElement('script');
+            select2Script.setAttribute('src','https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
+            document.head.appendChild(my_awesome_script);
+          }
+
+
+
+
           console.log("exec reMountedIfNotYet " + xx + ': ', xx)
           setTimeout(() => {
             if(!that.select2) {
