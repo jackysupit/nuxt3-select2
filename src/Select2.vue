@@ -16,7 +16,7 @@
 /* import 'jquery/dist/jquery.js'; */
 /* import 'select2/dist/js/select2.full'; */
 
-
+g
 // import 'jquery/dist/jquery.js'
 // import 'select2/dist/js/select2.full.js';
 // console.log("starting the select2");
