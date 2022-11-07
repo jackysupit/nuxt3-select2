@@ -133,10 +133,10 @@ export default {
     setOption(val = []) {
       if(!this.select2) {
         let elSelect;
-        if(that.$el) {
-          elSelect = $(that.$el).find("select.this-is-select2");
+        if(this.$el) {
+          elSelect = $(this.$el).find("select.this-is-select2");
         } else {
-          elSelect = $(that).find("select.this-is-select2");
+          elSelect = $(this).find("select.this-is-select2");
         }
         this.select2 = elSelect;
       }
@@ -152,10 +152,10 @@ export default {
     setValue(val) {
       if(!this.select2) {
         let elSelect;
-        if(that.$el) {
-          elSelect = $(that.$el).find("select.this-is-select2");
+        if(this.$el) {
+          elSelect = $(this.$el).find("select.this-is-select2");
         } else {
-          elSelect = $(that).find("select.this-is-select2");
+          elSelect = $(this).find("select.this-is-select2");
         }
         this.select2 = elSelect;
       }
