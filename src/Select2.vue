@@ -19,8 +19,11 @@
 // import 'jquery/dist/jquery.js'
 // import 'select2/dist/js/select2.full.js';
 // console.log("starting the select2");
-import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
-import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
+// import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
+// import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
+
+import 'jquery.3.6.1.js';
+import 'select2.js';
 
 // const jQuery = require('jquery')(dom.window)
 
@@ -305,6 +308,6 @@ export default {
   </div>
 </template>
 <style>
-  /* @import 'select2/dist/css/select2.min.css'; */
-  @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
+  @import 'select2.css';
+  /* @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'; */
 </style>

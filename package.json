@@ -1,6 +1,6 @@
 {
   "name": "nuxt3-select2",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "select2 for nuxt3. https://github.com/jackysupit/nuxt3-select2/tree/for-nuxt3",
   "repository": {
     "type": "git",
@@ -32,7 +32,10 @@
     "lint": "nuxt3-cli-service lint"
   },
   "homepage": "https://github.com/jackysupit/nuxt3-select2/tree/for-nuxt3#readme",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "select2": "^4.0.7-rc.0"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
