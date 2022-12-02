@@ -25,8 +25,6 @@
 import 'node_modules/nuxt3-select2/src/jquery.3.6.1.js';
 import 'node_modules/nuxt3-select2/src/select2.js';
 
-// const jQuery = require('jquery')(dom.window)
-
 /**
  *
 change
