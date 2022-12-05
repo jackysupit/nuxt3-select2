@@ -303,9 +303,8 @@ export default {
 <template>
   <div>
     <select class="form-control this-is-select2" :placeholder="placeholder" :id="id" :name="name" :disabled="disabled" :required="required"></select>
-  iv>
+  </div>
 </template>
 <style>
-  // @import 'nuxt3-select2/src/select2.css';
-  /* @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'; */
+  @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
 </style>
