@@ -1,6 +1,6 @@
 {
   "name": "nuxt3-select2",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "description": "select2 for nuxt3. https://github.com/jackysupit/nuxt3-select2/tree/for-nuxt3",
   "repository": {
     "type": "git",
@@ -23,10 +23,7 @@
   },
   "files": [
     "dist/*",
-    "src/**/*.vue",
-    "src/jquery.3.6.1.js",
-    "src/select2.js",
-    "src/select2.css"
+    "src/**/*.vue"
   ],
   "scripts": {
     "build:publish": "nuxt3-cli-service build --target lib --name Select2 src/Select2.vue",
