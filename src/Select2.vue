@@ -19,11 +19,11 @@
 // import 'jquery/dist/jquery.js'
 // import 'select2/dist/js/select2.full.js';
 // console.log("starting the select2");
-// import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
-// import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
+import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
+import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
 
-import 'nuxt3-select2/src/jquery.3.6.1.js';
-import 'nuxt3-select2/src/select2.js';
+// import 'nuxt3-select2/src/jquery.3.6.1.js';
+// import 'nuxt3-select2/src/select2.js';
 
 /**
  *
@@ -303,9 +303,9 @@ export default {
 <template>
   <div>
     <select class="form-control this-is-select2" :placeholder="placeholder" :id="id" :name="name" :disabled="disabled" :required="required"></select>
-  </div>
+  iv>
 </template>
 <style>
-  @import 'nuxt3-select2/src/select2.css';
+  // @import 'nuxt3-select2/src/select2.css';
   /* @import 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'; */
 </style>
